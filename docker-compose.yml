@@ -1,0 +1,17 @@
+services:
+  training:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mrpc-training:latest
+    container_name: mrpc-training
+    volumes:
+      # Mount checkpoints directory to persist trained models
+      - ./docker-checkpoints:/app/checkpoints
+    environment:
+      # Disable WANDB if you don't want to log (or set your API key)
+      - WANDB_MODE=offline
+      # Uncomment and set your W&B API key if you want online logging
+      # - WANDB_API_KEY=your_api_key_here
+    stdin_open: true
+    tty: true
