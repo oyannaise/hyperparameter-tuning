@@ -1,4 +1,4 @@
-# MRPC Paraphrase Detection with Docker 🐳
+# MRPC Paraphrase Detection with Docker 
 
 This project trains a DistilBERT model for paraphrase detection on the MRPC (Microsoft Research Paraphrase Corpus) dataset using PyTorch Lightning and Docker.
 
@@ -7,7 +7,7 @@ This project trains a DistilBERT model for paraphrase detection on the MRPC (Mic
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-Educational-green.svg)](LICENSE)
 
-## 📊 Project Overview
+## Project Overview
 
 - **Task**: Binary classification (paraphrase detection)
 - **Dataset**: MRPC from GLUE benchmark (3,668 training / 408 validation samples)
@@ -16,7 +16,7 @@ This project trains a DistilBERT model for paraphrase detection on the MRPC (Mic
 - **Experiment Tracking**: Weights & Biases (W&B)
 - **Deployment**: Docker + GitHub Codespaces
 
-## 🎯 Best Results
+## Best Results
 
 The model was trained with hyperparameters optimized in Project 1:
 
@@ -37,7 +37,7 @@ Epochs: 3
 Random Seed: 42
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -72,7 +72,7 @@ docker build -t mrpc-training:latest .
 docker run -v $(pwd)/docker-checkpoints:/app/checkpoints mrpc-training:latest
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 hyperparameter-tuning/
@@ -95,7 +95,7 @@ hyperparameter-tuning/
 └── README.md            # This file
 ```
 
-## 🔧 Manual Training (Without Docker)
+## Manual Training (Without Docker)
 
 If you prefer to run training directly on your machine:
 
@@ -139,7 +139,7 @@ python main.py \
 | `--project_name` | No | mrpc-docker-training | W&B project name |
 | `--run_name` | No | auto-generated | W&B run name |
 
-## 📊 Experiment Tracking
+## Experiment Tracking
 
 This project uses **Weights & Biases (W&B)** for experiment tracking.
 
@@ -168,7 +168,7 @@ To enable online logging:
      # Remove or comment out WANDB_MODE=offline
    ```
 
-## 🌐 Running on GitHub Codespaces
+## Running on GitHub Codespaces
 
 This project includes a dev container configuration for easy deployment on GitHub Codespaces.
 
@@ -183,18 +183,12 @@ This project includes a dev container configuration for easy deployment on GitHu
    docker-compose up --build
    ```
 
-### What Codespaces Provides:
-- ✅ Pre-configured Python 3.11 environment
-- ✅ Docker-in-Docker support
-- ✅ All VS Code extensions installed
-- ✅ Persistent storage for checkpoints
-- ✅ Free tier: 60 hours/month for 2-core machine
 
 ### Performance Comparison:
 
 | Platform | Accuracy | F1 Score | Training Time | Notes |
 |----------|----------|----------|---------------|-------|
-| Local Docker (Mac M1) | 84.80% | 89.46% | ~15 min | CPU only |
+| Local Docker (Mac M2) | 84.80% | 89.46% | ~15 min | CPU only |
 | GitHub Codespaces | 84.80%* | 89.46%* | ~20-25 min* | 2-core VM, CPU only |
 | Docker Playground | 84.80%* | 89.46%* | ~25-30 min* | Shared resources |
 
@@ -214,7 +208,7 @@ docker ps
 --batch_size 8  # instead of 16
 ```
 
-## 🐳 Docker Details
+## Docker Details
 
 ### Image Information
 
@@ -223,16 +217,6 @@ docker ps
 - **Platform**: linux/amd64 (compatible with most systems)
 - **Build Time**: ~3-5 minutes (depending on internet speed)
 
-### What the Docker Container Does
-
-1. ✅ Sets up Python 3.11 environment
-2. ✅ Installs all dependencies from `requirements.txt`
-3. ✅ Downloads DistilBERT model from Hugging Face (~268MB)
-4. ✅ Downloads MRPC dataset from GLUE (~1MB)
-5. ✅ Trains the model for 3 epochs with best hyperparameters
-6. ✅ Saves checkpoints to `./docker-checkpoints/` (mounted volume)
-7. ✅ Logs metrics with W&B (offline by default)
-8. ✅ Displays final results in terminal
 
 ### Viewing Results
 
@@ -286,36 +270,7 @@ Then rebuild and run:
 docker-compose up --build
 ```
 
-## ⚠️ Common Issues & Solutions
-
-### Issue 1: Out of Memory
-
-**Solution**: Reduce batch size in `run_training.sh`:
-```bash
---batch_size 8  # or even 4
-```
-
-### Issue 2: Docker Daemon Not Running
-
-**Error**: `Cannot connect to the Docker daemon`
-
-**Solution**: Start Docker Desktop application
-
-### Issue 3: Permission Denied on Checkpoints
-
-**Solution**:
-```bash
-mkdir -p docker-checkpoints
-chmod 755 docker-checkpoints
-```
-
-### Issue 4: Slow Training on CPU
-
-**Expected**: Training on CPU takes 15-30 minutes (vs. 3-5 minutes on GPU)
-
-**Solution**: This is normal. Be patient or use a GPU-enabled cloud service.
-
-## 🧪 Testing
+## Testing
 
 To verify everything works:
 
@@ -333,7 +288,7 @@ Expected output:
 - Validation metrics shown after each epoch
 - Checkpoints saved
 
-## 🌐 Alternative: Docker Playground
+## Alternative: Docker Playground
 
 If you don't want to use Codespaces, you can test on Docker Playground:
 
@@ -352,13 +307,8 @@ If you don't want to use Codespaces, you can test on Docker Playground:
    docker run -v $(pwd)/docker-checkpoints:/app/checkpoints mrpc-training:latest
    ```
 
-### Docker Playground Notes:
-- ⏱️ Sessions last 4 hours
-- 💻 Shared resources (may be slower)
-- 🆓 Completely free
-- 🚀 No account required
 
-## 📈 Cross-Platform Performance
+## Cross-Platform Performance
 
 | Platform | Accuracy | F1 Score | Loss | Training Time | CPU |
 |----------|----------|----------|------|---------------|-----|
@@ -374,7 +324,7 @@ If you don't want to use Codespaces, you can test on Docker Playground:
 
 **Only training time varies** based on CPU performance.
 
-## 📝 Requirements
+## Requirements
 
 ```
 torch>=2.0.0
@@ -386,96 +336,21 @@ scikit-learn>=1.0.0
 wandb>=0.15.0
 ```
 
-## 🤝 Contributing
+## Contributing
 
 This is a course project, but feel free to:
 - Report issues
 - Suggest improvements
 - Fork and experiment
 
-## 📄 License
 
-This project is for educational purposes.
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Dataset**: MRPC from the GLUE benchmark
 - **Model**: DistilBERT by Hugging Face
 - **Framework**: PyTorch Lightning
 - **Experiment Tracking**: Weights & Biases
 
-## � Experiment Tracking Details
-
-This project uses **Weights & Biases (W&B)** to track experiments.
-
-### Default: Offline Mode
-
-By default, W&B runs in **offline mode** (no internet required). Logs are saved locally to `./wandb/` directory.
-
-**Advantages:**
-- ✅ No API key needed
-- ✅ Works without internet
-- ✅ Full privacy (data stays local)
-- ✅ Can sync later
-
-**View offline logs:**
-```bash
-# List all runs
-ls -lh wandb/
-
-# View run summary
-cat wandb/offline-run-*/files/wandb-summary.json
-
-# Sync to W&B cloud later (requires API key)
-wandb sync ./wandb/offline-run-*
-```
-
-### Enable Online Mode
-
-To enable live experiment tracking on wandb.ai:
-
-**1. Get your API key**: https://wandb.ai/authorize
-
-**2. Set it in docker-compose.yml**:
-```yaml
-environment:
-  - WANDB_API_KEY=your_api_key_here
-  # Comment out or remove: - WANDB_MODE=offline
-```
-
-**3. Or export as environment variable**:
-```bash
-export WANDB_API_KEY=your_api_key_here
-docker-compose up --build
-```
-
-**4. Or pass directly to Python**:
-```bash
-python main.py \
-  --checkpoint_dir ./checkpoints \
-  --lr 2.8e-5 \
-  --project_name your-project-name \
-  --run_name your-run-name
-```
-
-### What W&B Tracks
-
-- 📊 Training loss per step
-- 📈 Validation metrics (accuracy, F1 score, loss)
-- ⚙️ All hyperparameters
-- 💻 System info (CPU, RAM, Python version)
-- ⏱️ Training time per epoch
-- 📁 Model checkpoints (optional)
-
-### W&B Dashboard
-
-When online mode is enabled, you can:
-- Compare multiple runs
-- Visualize metrics in real-time
-- Share results with collaborators
-- Download metrics as CSV
-
-Access at: `https://wandb.ai/YOUR_USERNAME/mrpc-docker-training`
 
 ## 👤 Author
 
