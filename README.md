@@ -90,20 +90,7 @@ docker run --rm \
    ```bash
    docker run --rm -e WANDB_API_KEY=$WANDB_API_KEY glue-training
    ```
-
-### Run on Docker Playground
-
-1. Go to [Docker Playground](https://labs.play-with-docker.com/)
-2. Clone the repository:
-   ```bash
-   git clone <your-repo-url>
-   cd hyperparametertuning
-   ```
-3. Build and run:
-   ```bash
-   docker build -t glue-training .
-   docker run --rm -e WANDB_API_KEY=your_api_key_here glue-training
-   ```
+   
 
 ## Project Structure
 
