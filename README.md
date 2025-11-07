@@ -90,7 +90,7 @@ docker run --rm \
    ```bash
    docker run --rm -e WANDB_API_KEY=$WANDB_API_KEY glue-training
    ```
-   
+
 
 ## Project Structure
 
@@ -114,8 +114,8 @@ All training runs are automatically logged to Weights & Biases. You can monitor:
 - Learning rate schedule
 - System metrics
 
-**Required Adaptations**:
+**Note**:
 
 - Set `WANDB_API_KEY` as environment variable for logging
 - Ensure sufficient disk space for model downloads (~500MB)
-- Consider reducing batch size if memory issues occur
+
