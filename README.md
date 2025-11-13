@@ -25,7 +25,7 @@ This project provides a dockerized training pipeline for fine-tuning transformer
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/oyannaise/hyperparameter-tuning
    cd hyperparametertuning
    ```
 
